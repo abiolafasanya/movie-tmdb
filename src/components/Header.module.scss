@@ -1,0 +1,102 @@
+@use '../styles/color' as c;
+@import '../styles/fonts';
+
+.Header {
+  font-family: $work-sans;
+  font-size: 1rem;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  [data-theme="dark"] {
+    .link {
+      &:hover {
+        color: lighten($color: c.$secondary, $amount: 10);
+      }
+    }
+
+    .search {
+      background-color: lighten($color: c.$dark, $amount: 10);
+
+      input {
+        color: c.$light;
+      }
+    }
+  }
+
+  [data-theme="light"] {
+    .link {
+      &:hover {
+        color: lighten($color: c.$dark, $amount: 10);
+      }
+    }
+    .search {
+      background-color: darken($color: c.$light, $amount: 10);
+      color: c.$dark;
+
+      input {
+        color: inherit;
+      }
+    }
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 7rem;
+    align-items: center;
+    border-bottom: 1px solid darken($color: c.$secondary, $amount: 20);
+
+    .left {
+      gap: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .logo {
+        align-items: center;
+        display: flex;
+        font-size: 20px;
+        .fa {
+          font-size: 2.5rem;
+        }
+      }
+      .links {
+        display: flex;
+        gap: 1rem;
+      }
+    }
+    .right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+
+      .search {
+        width: 100%;
+        padding: 8px;
+        border-radius: 5rem;
+        -webkit-border-radius: 5rem;
+        -moz-border-radius: 5rem;
+        -ms-border-radius: 5rem;
+        -o-border-radius: 5rem;
+        input {
+          outline: none;
+          border: none;
+          background-color: transparent;
+          padding: 2px 2rem;
+          font-size: 16px;
+        }
+      }
+      .icons {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        .avatar {
+          width: 48px;
+        }
+      }
+    }
+  }
+}

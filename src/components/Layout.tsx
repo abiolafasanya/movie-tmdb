@@ -10,12 +10,12 @@ const {dark} = useApp()
 
   return (
     <div className={styles.Layout}>
-       <div className={dark ? styles.dark : styles.light}>
-       <Header />
+      <div data-theme={dark ? 'dark' : 'light'}>
+        <Header />
         <Outlet />
-       </div>
+      </div>
     </div>
-  )
+  );
 }
 
 export default Layout

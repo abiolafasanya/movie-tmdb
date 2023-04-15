@@ -1,3 +1,4 @@
+    @use '../styles/color.scss' as c;
 @import '../styles/func';
 
 .Layout {
@@ -7,18 +8,19 @@
     min-height: 100vh;
     font-size: 1rem;    
     display: flex;
+    color: #000;
 
 
-    .dark {
-        color: #ffffff;
-        background-color: #000000;
+    [data-theme="dark"] {
+        color: c.$light;
+        background-color: c.$dark;
         width: 100%;
     }
     
-    .light {
+    [data-theme="light"] {
         width: 100%;
-        color: #000000;
-        background-color: #ffffff;
+        color: #000 !important;
+        background-color: darken($color: c.$light, $amount: 5);
     }
 
 }
