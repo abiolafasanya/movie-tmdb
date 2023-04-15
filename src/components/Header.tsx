@@ -20,7 +20,7 @@ const Header = () => {
         <div className={styles.left}>
           <div className={styles.logo}>
             <MdMovie className={styles.fa} />
-            <span>TSCMovies</span>
+            <span>BitMovies</span>
           </div>
           <div className={styles.links}>
             {navLinks.map((link, id) => (
