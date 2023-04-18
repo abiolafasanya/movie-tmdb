@@ -1,0 +1,40 @@
+@use "sass:math";
+
+// Define the number of columns in the grid
+$grid-columns: 12;
+
+// Define the width of the grid container
+$container-width: 100%;
+
+// Define any spacing and padding values for the grid
+$gutter: 20px;
+$padding: 20px;
+
+// Define the class prefix for the grid
+$prefix: 'col';
+
+// Define the row class
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: math.div(-$gutter, 2);;
+}
+
+// Loop through the number of columns and generate the classes
+@for $i from 1 through $grid-columns {
+  .#{$prefix}-#{$i} {
+    flex-basis: calc((100% / #{$grid-columns} * #{$i}) - #{$gutter});
+    max-width: calc((100% / #{$grid-columns} * #{$i}) - #{$gutter});
+    margin: math.div($gutter, 2);
+    box-sizing: border-box;
+  }
+}
+
+// Generate row class
+.#{$prefix}-row {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: math.div(-$gutter, 2);;
+  padding: $padding;
+}

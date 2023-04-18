@@ -1,24 +1,29 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 
 type AppTypes = {
-    toggleTheme: () => void;
-    dark: boolean;
-}
+  toggleTheme: () => void;
+  dark: boolean;
+};
 
-interface AppPovider {
-    children: React.ReactNode;
+interface AppProviderProps {
+  children: React.ReactNode;
 }
-
 
 const AppContext = createContext({} as AppTypes);
 
-export const AppProvider= ({ children }: AppPovider) => {
-  function toggleTheme() {
-    setDark((dark) => !dark);
-  }
+export const AppProvider = ({ children }: AppProviderProps) => {
+  const [dark, setDark] = useState<boolean>(() => {
+    const storedTheme = localStorage.getItem('theme');
+    return storedTheme ? JSON.parse(storedTheme) : true;
+  });
 
-  const [dark, setDark] = useState(true);
-  // window.matchMedia('(prefers-color-scheme: dark)').matches
+  useEffect(() => {
+    localStorage.setItem('theme', JSON.stringify(dark));
+  }, [dark]);
+
+  const toggleTheme = () => {
+    setDark(prevDark => !prevDark);
+  };
 
   return (
     <AppContext.Provider value={{ dark, toggleTheme }}>
@@ -27,4 +32,4 @@ export const AppProvider= ({ children }: AppPovider) => {
   );
 };
 
-export default AppContext
+export default AppContext;

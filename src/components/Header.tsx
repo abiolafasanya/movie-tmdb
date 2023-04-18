@@ -1,6 +1,6 @@
-import React from 'react'
-import useApp from '../hooks/useApp'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import useApp from '../hooks/useApp';
+import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 import avatar from '../assets/icons/avatar.png';
 import { MdDarkMode, MdLightMode, MdMovie } from 'react-icons/md';
@@ -24,7 +24,7 @@ const Header = () => {
           </div>
           <div className={styles.links}>
             {navLinks.map((link, id) => (
-              <Link to={link.url} className={styles.link}>
+              <Link key={id} to={link.url} className={styles.link}>
                 {link.name}
               </Link>
             ))}
@@ -48,4 +48,4 @@ const Header = () => {
   );
 };
 
-export default Header
+export default Header;

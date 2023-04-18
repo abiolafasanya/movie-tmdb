@@ -1,0 +1,63 @@
+@use '../../styles/color' as *;
+@use '../../styles/fonts' as *;
+@use '../../styles/func' as *;
+
+.Movie {
+    @include container() {
+        min-height: 100vh;
+    }
+
+    .description {
+        width: 100%;
+        display: flex;
+        @include mobile() {
+            flex-direction: column;
+        }
+        @include tablet () {
+            flex-wrap: wrap;
+        }
+        gap: 2rem;
+        // align-items: center;
+        .content {
+            max-width: 60%;
+        }
+         .image {
+            max-width: 30%;
+
+            img {
+                width: 100%;
+            }
+        }
+        .info {
+            display: flex;
+            gap: .5rem;
+            flex-wrap: wrap;
+            color: darken($color: #fff, $amount: 20);
+        }
+
+        .overview {
+            margin: 3rem 0;
+            text-align: justify;
+            @include mobile() {
+                text-align: center;
+            }
+        }
+
+        .trailerBtn {
+            background-color: darken($color: $orange, $amount: 10);
+            color: set-text-color($orange);
+            padding: 14px 16px;
+            margin: 1rem 0;
+            display: block;
+            width: 150px;
+            border-radius: 1px solid transparent;
+            -webkit-border-radius: 1px solid transparent;
+            -moz-border-radius: 1px solid transparent;
+            -ms-border-radius: 1px solid transparent;
+            -o-border-radius: 1px solid transparent;
+}
+
+
+    }
+
+}
