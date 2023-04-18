@@ -58,6 +58,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      @include mobile() {
+        flex-direction: column;
+      }
       .logo {
         align-items: center;
         display: flex;
@@ -76,7 +79,9 @@
       align-items: center;
       justify-content: center;
       gap: 2rem;
-
+      @include mobile() {
+        flex-direction: column;
+      }
       .search {
         width: 100%;
         padding: 8px;
@@ -85,6 +90,9 @@
         -moz-border-radius: 5rem;
         -ms-border-radius: 5rem;
         -o-border-radius: 5rem;
+        @include mobile() {
+          margin: 1rem 0;
+        }
         input {
           outline: none;
           border: none;

@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import styles from './Movie.module.scss';
 import Axios from '../../api/Axios';
 import { creditsType, movieType } from '../../utils/types';
-import { star } from '../../utils/Images';
+import { play, star } from '../../utils/Images';
 import { formatDate } from '../../utils/formatter';
 
 const Movie = () => {
@@ -13,6 +13,7 @@ const Movie = () => {
   const [movie, setMovie] = useState({} as movieType);
   const [credits, setCredits] = useState({} as creditsType);
   const posterBaseUrl = 'https://image.tmdb.org/t/p/w500';
+  const imageUrl2 = 'https://image.tmdb.org/t/p/w235_and_h235_face/';
 
   useEffect(() => {
     async function fetchUserDetails() {
@@ -75,15 +76,47 @@ const Movie = () => {
               </span>
             </div>
             <p className={styles.overview}>{movie.overview}</p>
-          <Link to={`/movies`} className={styles.trailerBtn}>Play Trailer</Link>
-          <div>
-            <h3>Featured Crew</h3>
-          </div>
-          <div>casts</div>
-          </div>
 
+            <div>
+              <h3>Featured Crew</h3>
+              <div className={styles.crew}>
+                {credits.crew &&
+                  credits.crew.slice(0, 2).map((crew) => (
+                    <div key={crew.id} className={styles.item}>
+                      <h3>{crew.name}</h3>
+                      <div>{crew.known_for_department}</div>
+                    </div>
+                  ))}
+              </div>
+            </div>
+
+            <Link to={`/movies`} className={styles.trailerBtn}>
+              <img src={play} alt="star" />
+              <span>Play Trailer</span>
+            </Link>
+          </div>
         </div>
       )}
+
+      <div className={styles.cast}>
+        <h2>Cast</h2>
+        <div className={styles.info}>
+          {credits.cast &&
+            credits.cast.slice(0, 8).map((cast) => (
+              <div className={styles.card}>
+                <img src={imageUrl2 + cast.profile_path} alt="" />
+                <div>
+                <h3>{cast.name}</h3>
+                <div>{cast.character}</div>
+                </div>
+                <div>
+                  <span>{cast.known_for_department}</span> |
+                  <span>{Math.floor(cast.popularity * 10)}k</span>
+                </div>
+              </div>
+            ))}
+        </div>
+      </div>
     </div>
   );
 };
