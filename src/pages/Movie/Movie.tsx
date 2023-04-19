@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styles from './Movie.module.scss';
 import Axios from '../../api/Axios';
 import { creditsType, movieType } from '../../utils/types';
 import { play, star } from '../../utils/Images';
 import { formatDate } from '../../utils/formatter';
+import useApp from '../../hooks/useApp';
 
 const Movie = () => {
   const { pathname } = useLocation();
@@ -14,6 +15,8 @@ const Movie = () => {
   const [credits, setCredits] = useState({} as creditsType);
   const posterBaseUrl = 'https://image.tmdb.org/t/p/w1280';
   const imageUrl2 = 'https://image.tmdb.org/t/p/w235_and_h235_face/';
+  const { dark } = useApp();
+  const useDarkRef = useRef<HTMLDivElement>(HTMLDivElement.prototype);
 
   useEffect(() => {
     async function fetchUserDetails() {
@@ -58,7 +61,11 @@ const Movie = () => {
           </div>
           <div className={styles.content}>
             <h1>{movie.original_title}</h1>
-            <div className={styles.info}>
+            <div
+              className={styles.info}
+              ref={useDarkRef}
+              data-theme={dark ? 'dark' : 'light'}
+            >
               <img src={star} alt="" />
               <span>{Math.floor(movie.vote_average * 10)}%</span> |
               <span>{formatDate(movie.release_date)}</span> |
@@ -87,7 +94,10 @@ const Movie = () => {
               </div>
             </div>
 
-            <Link to={`/movies`} className={styles.trailerBtn}>
+            <Link
+              to={movie.video ? movie.homepage : '/'}
+              className={styles.trailerBtn}
+            >
               <img src={play} alt="star" />
               <span>Play Trailer</span>
             </Link>
@@ -100,7 +110,7 @@ const Movie = () => {
         <div className={styles.info}>
           {credits.cast &&
             credits.cast.slice(0, 8).map((cast) => (
-              <Link to={`/actor/${cast.id}`}>
+              <Link key={cast.id} to={`/actor/${cast.id}`}>
                 <div key={cast.id} className={styles.card}>
                   <img src={imageUrl2 + cast.profile_path} alt="" />
                   <div>

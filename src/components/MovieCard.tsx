@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { formatDate } from '../utils/formatter';
 import { star } from '../utils/Images';
 import { Genre, popularMovieType } from '../utils/types';
@@ -18,7 +17,6 @@ const MovieCard = ({ genres, movie }: Props) => {
 
   return (
     <div key={movie.id} className={styles.card}>
-      <Link to={`/movie/${movie.id}`}>
         <img src={posterBaseUrl + movie.backdrop_path} alt="poster" />
         <div className={styles['card-body']}>
           <h2>{movie.title}</h2>
@@ -29,7 +27,6 @@ const MovieCard = ({ genres, movie }: Props) => {
           </div>
           <div>{mapGenres(movie.genre_ids)}</div>
         </div>
-      </Link>
     </div>
   );
 };

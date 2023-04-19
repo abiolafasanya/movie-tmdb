@@ -1,18 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import styles from './Actor.module.scss';
+import styles from '../Actor/Actor.module.scss';
 import Axios from '../../api/Axios';
 import { Socials, actorType, castType, creditsType } from '../../utils/types';
-import { play, star } from '../../utils/Images';
+import { star } from '../../utils/Images';
 import { formatDate } from '../../utils/formatter';
-import {
-  FaFacebook,
-  FaInstagram,
-  FaTwitter,
-  FaYoutube,
-  FaTiktok,
-  FaImdb,
-} from 'react-icons/fa';
 import Social from '../../components/Social';
 
 const Actor = () => {
@@ -70,10 +62,6 @@ const Actor = () => {
     return data;
   };
 
-  function Genre({ genre }: { genre: { id: number; name: string } }) {
-    return <span key={genre.id}>{genre.name}</span>;
-  }
-
   return (
     <div className={styles.actor}>
       {actor && (
@@ -97,7 +85,7 @@ const Actor = () => {
               <span>
                 {actor.also_known_as &&
                   actor.also_known_as.map((known, i) => (
-                    <span key={i}>
+                    <span key={known+i}>
                       <span>{known}</span>
                     </span>
                   ))}
@@ -112,8 +100,8 @@ const Actor = () => {
                   cast
                     .sort((a, b) => b.popularity - a.popularity)
                     .slice(0, 5)
-                    .map((cast) => (
-                      <Link key={cast.id} to={`/movie/${cast.id}`}>
+                    .map((cast,i) => (
+                      <Link key={cast.id+i} to={`/movie/${cast.id}`}>
                         <div key={cast.id} className={styles.item}>
                           <img src={imageUrl2 + cast.poster_path} alt="" />
                           <div className={styles.kTitle}>{cast.title}</div>

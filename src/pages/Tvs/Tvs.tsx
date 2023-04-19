@@ -1,29 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import styles from './Movies.module.scss';
+import styles from '../Movies/Movies.module.scss';
 import useApp from '../../hooks/useApp';
-import MovieController from '../../utils/moviesController';
+import TvController from '../../utils/tvController';
 import { popularMovieType } from '../../utils/types';
-import MovieCard from '../../components/MovieCard';
 import { Link } from 'react-router-dom';
+import MovieCard from '../../components/MovieCard';
 
 type Genre = {
   id: number;
   name: string;
 };
 
-const Movies = () => {
-  const { dark } = useApp();
+const Tv = () => {
   const [loading, setLoading] = useState(true);
   const [popular, setPopular] = useState({} as popularMovieType[]);
-  const [playing, setPlaying] = useState({} as popularMovieType[]);
+  const [tops, setTops] = useState({} as popularMovieType[]);
   const [genres, setGenres] = useState([] as Genre[]);
+  const { dark } = useApp();
 
   useEffect(() => {
-    MovieController.index()
+    TvController.index()
       .then((data) => {
-        setPopular(data.movies);
-        setPlaying(data.playing);
-        setGenres(data.genres);
+        setPopular(data.tvs);
+        setTops(data.rated);
+        setGenres(data.genreArr);
       })
       .finally(() => setLoading(false));
   }, []);
@@ -31,24 +31,24 @@ const Movies = () => {
   return (
     <div className={styles.Home}>
       <div data-theme={dark ? 'dark' : 'light'}>
-        <h2 className={styles.title}>Popular Movies</h2>
+        <h2 className={styles.title}>Popular Tv Series</h2>
 
         {popular.length > 0 && (
           <div className={styles.container}>
-            {popular.slice(0, 12).map((movie) => (
-              <Link key={movie.id} to={`/movie/${movie.id}`}>
+            {popular.slice(0, 12).map((movie, i) => (
+              <Link key={`${Date.now()}${i}${movie.id}`} to={`/tv/${movie.id}`}>
                 <MovieCard genres={genres} movie={movie} key={movie.id} />
               </Link>
             ))}
           </div>
         )}
 
-        <h2 className={styles.title}>Now Playing</h2>
+        <h2 className={styles.title}>Top Rated</h2>
 
-        {playing.length > 0 && (
+        {tops.length > 0 && (
           <div className={styles.container}>
-            {playing.slice(0, 12).map((movie) => (
-              <Link key={movie.id} to={`/movie/${movie.id}`}>
+            {tops.slice(0, 12).map((movie, i) => (
+              <Link key={`${Date.now()}${i}${movie.id}`} to={`/tv/${movie.id}`}>
                 <MovieCard genres={genres} movie={movie} key={movie.id} />
               </Link>
             ))}
@@ -59,4 +59,4 @@ const Movies = () => {
   );
 };
 
-export default Movies;
+export default Tv;

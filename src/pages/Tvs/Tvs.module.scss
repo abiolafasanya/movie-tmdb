@@ -1,0 +1,14 @@
+@use '../../styles/color.scss' as *;
+@use '../../styles/func.scss' as *;
+
+.tv {
+    @include container() {
+        min-height: 100vh;
+    }
+    
+    .title {
+        margin: 1rem 0;
+        color: $orange;
+    }
+
+}

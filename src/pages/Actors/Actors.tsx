@@ -17,7 +17,6 @@ const Actors = () => {
   const [loading, setLoading] = useState(true);
   const fetchPerson = async () => {
     const { data } = await Axios.get('/person/popular');
-    console.log(data);
     return data.results as actorsType[];
   };
 

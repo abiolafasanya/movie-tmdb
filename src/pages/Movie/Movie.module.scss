@@ -2,6 +2,8 @@
 @use '../../styles/fonts' as *;
 @use '../../styles/func' as *;
 
+$theme: null;
+
 .Movie {
   @include container() {
     min-height: 100vh;
@@ -46,7 +48,6 @@
       display: flex;
       gap: 0.5rem;
       flex-wrap: wrap;
-      color: darken($color: #fff, $amount: 20);
     }
 
     .overview {
