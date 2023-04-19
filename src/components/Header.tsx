@@ -10,7 +10,7 @@ const Header = () => {
   const { dark, toggleTheme } = useApp();
 
   const navLinks = [
-    { name: 'Movie', url: '/' },
+    { name: 'Movies', url: '/' },
     { name: 'Tv Shows', url: '/tv-shows' },
     { name: 'Actors', url: '/actors' },
   ];
