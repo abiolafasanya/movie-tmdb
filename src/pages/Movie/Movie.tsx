@@ -119,7 +119,7 @@ const Movie = () => {
                   </div>
                   <div>
                     <span>{cast.known_for_department}</span> |
-                    <span>{Math.floor(cast.popularity * 10)}k</span>
+                    <span>{Math.floor(cast.popularity)}k</span>
                   </div>
                 </div>
               </Link>

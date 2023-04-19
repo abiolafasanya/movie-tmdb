@@ -86,7 +86,7 @@ const Actor = () => {
             <h1>{actor.name}</h1>
             <div className={styles.info}>
               <img src={star} alt="" />
-              <span>{Math.floor(actor.popularity * 10)}k</span> |
+              <span>{Math.floor(actor.popularity)}k</span> |
               <span>
                 {`${formatDate(actor.birthday)} (${age(
                   actor.birthday,
