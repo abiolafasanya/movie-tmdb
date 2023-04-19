@@ -21,7 +21,7 @@
 
   .title {
     font-size: 22px;
-    color:  $orange;
+    color: $orange;
     padding: 2rem 0;
   }
 
@@ -29,18 +29,18 @@
     text-decoration: none;
     color: inherit;
   }
-
+ 
   .container {
     width: 100%;
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    @include tablet() {
+      width: 100%;
+    }
 
     .card {
       width: 250px;
-      @include tablet() {
-        width: 45%;
-      }
       @include mobile() {
         width: 100%;
       }
@@ -61,16 +61,16 @@
         h2 {
           font-weight: 600;
         }
-        .rating{
-            display: flex;
-            gap: 5px;
-            flex-wrap: wrap;
-            align-items: center;
+        .rating {
+          display: flex;
+          gap: 5px;
+          flex-wrap: wrap;
+          align-items: center;
 
-            img {
-              width: 24px;
-              height: auto;
-            }
+          img {
+            width: 24px;
+            height: auto;
+          }
         }
       }
     }

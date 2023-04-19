@@ -1,0 +1,22 @@
+@use '../styles/color' as *;
+@use '../styles/func' as *;
+@import '../styles/fonts';
+
+.result {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  margin: .5rem 0;
+  background-color: darken($color: $light, $amount: 10);
+  // width: 100%;
+
+  img {
+    width: 24px;
+}
+  .title {
+    white-space: nowrap; /* Prevents the text from wrapping */
+    overflow: hidden; /* Hides any overflowing content */
+    text-overflow: ellipsis; /* Displays an ellipsis (...) to indicate truncated text */
+  }
+}

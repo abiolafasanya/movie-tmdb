@@ -12,7 +12,7 @@ const Movie = () => {
   const [loading, setLoading] = useState(true);
   const [movie, setMovie] = useState({} as movieType);
   const [credits, setCredits] = useState({} as creditsType);
-  const posterBaseUrl = 'https://image.tmdb.org/t/p/w500';
+  const posterBaseUrl = 'https://image.tmdb.org/t/p/w1280';
   const imageUrl2 = 'https://image.tmdb.org/t/p/w235_and_h235_face/';
 
   useEffect(() => {
@@ -21,12 +21,8 @@ const Movie = () => {
         const fetchedMovie = await fetchMovie();
         setMovie(fetchedMovie.movie);
         setCredits(fetchedMovie.credits);
-        console.log(
-          'User successfully retrieved',
-          console.log(fetchedMovie.movie.genres)
-        );
       } catch (error) {
-        console.log('An error occurred');
+        return null;
       }
       setLoading(false);
     }
@@ -35,13 +31,14 @@ const Movie = () => {
   }, []);
 
   const fetchMovie = async () => {
-    const { data: movie } = await Axios.get<movieType>(`/${id}`);
-    const { data: credits } = await Axios.get<creditsType>(`/${id}/credits`);
+    const { data: movie } = await Axios.get<movieType>(`/movie/${id}`);
+    const { data: credits } = await Axios.get<creditsType>(
+      `/movie/${id}/credits`
+    );
     const data = {
       movie,
       credits,
     };
-    console.log(data);
     return data;
   };
 
@@ -68,10 +65,10 @@ const Movie = () => {
               <span>
                 {movie.genres &&
                   movie.genres.map((genre) => (
-                    <>
+                    <span key={genre.id}>
                       <span key={genre.id}>{genre.name}</span>
                       {separator(movie.id, movie)}
-                    </>
+                    </span>
                   ))}
               </span>
             </div>
@@ -103,11 +100,11 @@ const Movie = () => {
         <div className={styles.info}>
           {credits.cast &&
             credits.cast.slice(0, 8).map((cast) => (
-              <div className={styles.card}>
+              <div key={cast.id} className={styles.card}>
                 <img src={imageUrl2 + cast.profile_path} alt="" />
                 <div>
-                <h3>{cast.name}</h3>
-                <div>{cast.character}</div>
+                  <h3>{cast.name}</h3>
+                  <div>{cast.character}</div>
                 </div>
                 <div>
                   <span>{cast.known_for_department}</span> |

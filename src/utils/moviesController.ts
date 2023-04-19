@@ -29,25 +29,15 @@ interface Genre {
 
 class MovieController {
   async index() {
-    const { data: movies } = await Axios.get<Movie>('/popular');
-   
-    const { data: genreArr } = await Axios.get<Genre>(
-      'https://api.themoviedb.org/3/genre/movie/list'
-    );
-    // console.log('genreArr:', genreArr.genres);
-    const getGenres = () => {
-      const genresById = {} as { [id: number]: string };
+    const { data: movies } = await Axios.get<Movie>('/movie/popular');
+    const { data: playing } = await Axios.get<Movie>('/movie/now_playing');
 
-      // Create a map of genre IDs to genre names
-      return genreArr.genres.map(
-        (genre) => (genresById[genre.id] = genre.name)
-      );
-    };
+    const { data: genreArr } = await Axios.get<Genre>('/genre/movie/list');
 
-    // const genres = getGenres();
     const data = {
       movies: movies.results,
       genres: genreArr.genres,
+      playing: playing.results,
     };
 
     return data;

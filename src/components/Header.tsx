@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 import avatar from '../assets/icons/avatar.png';
 import { MdDarkMode, MdLightMode, MdMovie } from 'react-icons/md';
+import Search from './Search';
 
 const Header = () => {
   const { dark, toggleTheme } = useApp();
 
   const navLinks = [
-    { name: 'Movie', url: '/movies' },
+    { name: 'Movie', url: '/' },
     { name: 'Tv Shows', url: '/tv-shows' },
     { name: 'Actors', url: '/actors' },
   ];
@@ -31,9 +32,7 @@ const Header = () => {
           </div>
         </div>
         <div className={styles.right}>
-          <div className={styles.search}>
-            <input type="text" />
-          </div>
+          <Search />
           <div className={styles.icons}>
             <img src={avatar} alt="avatar" className={styles.avatar} />
             {dark ? (

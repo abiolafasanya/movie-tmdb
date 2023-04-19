@@ -38,6 +38,11 @@ type spokenLang = {
   name: string;
 };
 
+export type Genre = {
+  id: number;
+  name: string;
+};
+
 export type movieType = {
   adult: boolean;
   backdrop_path: string;
