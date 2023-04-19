@@ -18,7 +18,8 @@ function App() {
         <Route path="/actor/:id" hasErrorBoundary element={<Actor />} />
         <Route path="/tv/:id" element={<TvDetails />} />
         <Route path="/tv-shows" element={<Tvs />} />
-        <Route path="/contact" element={<Contact />} />
+        {/* <Route path="/contact" element={<Contact />} /> */}
+        <Route path="*" element={<Movies />} />
       </Route>
     </Routes>
   );
