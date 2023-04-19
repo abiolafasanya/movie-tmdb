@@ -36,15 +36,15 @@ const Actors = () => {
       <h2 className={styles.title}>Popular Actor</h2>
       <div className={styles.boxGroup}>
         {persons.length > 0 &&
-          persons.map((person) => (
-            <div key={person.id} className={styles.card}>
+          persons.map((person, i) => (
+            <div key={Date.now()+i} className={styles.card}>
               <Link to={'/actor/' + person.id}>
                 <img src={imageUrl + person.known_for[0].poster_path} alt="" />
                 <div className={styles.cardDetail}>
                   <h3>{person.name}</h3>
                   <div className={styles.knownFor}>
                     {person.known_for.map((known, index) => (
-                      <span key={known.id} className={styles.list}>
+                      <span key={index+'_'+known.id} className={styles.list}>
                         {known.name
                           ? known.name
                           : known.title

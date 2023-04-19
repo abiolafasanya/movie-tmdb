@@ -88,7 +88,7 @@ const Actor = () => {
               <span>
                 {actor.also_known_as &&
                   actor.also_known_as.map((known, i) => (
-                    <span key={i}>
+                    <span key={i + Date.now()}>
                       <span>{known}</span>
                     </span>
                   ))}
@@ -103,9 +103,9 @@ const Actor = () => {
                   cast
                     .sort((a, b) => b.popularity - a.popularity)
                     .slice(0, 5)
-                    .map((cast) => (
-                      <Link key={cast.id} to={`/movie/${cast.id}`}>
-                        <div key={cast.id} className={styles.item}>
+                    .map((cast, i) => (
+                      <Link key={Date.now() + i} to={`/movie/${cast.id}`}>
+                        <div className={styles.item}>
                           <img src={imageUrl2 + cast.poster_path} alt="" />
                           <div className={styles.kTitle}>{cast.title}</div>
                         </div>

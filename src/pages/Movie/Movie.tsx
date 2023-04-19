@@ -42,22 +42,21 @@ const Movie = () => {
       movie,
       credits,
     };
+    console.log({ data }, 'status');
     return data;
   };
 
-  function Genre({ genre }: { genre: { id: number; name: string } }) {
-    return <span key={genre.id}>{genre.name}</span>;
-  }
-
   const separator = (index: number, movie: movieType) =>
     index === movie.genres.length - 1 ? '' : ', ';
-
   return (
     <div className={styles.Movie}>
       {movie && (
         <div className={styles.description}>
           <div className={styles.image}>
-            <img src={posterBaseUrl + movie.poster_path} alt="movie image" />
+            <img
+              src={movie.poster_path ? posterBaseUrl + movie.poster_path : ''}
+              alt="movie image"
+            />
           </div>
           <div className={styles.content}>
             <h1>{movie.original_title}</h1>
@@ -71,9 +70,9 @@ const Movie = () => {
               <span>{formatDate(movie.release_date)}</span> |
               <span>
                 {movie.genres &&
-                  movie.genres.map((genre) => (
-                    <span key={genre.id}>
-                      <span key={genre.id}>{genre.name}</span>
+                  movie.genres.map((genre, i) => (
+                    <span key={`${Date.now()}${i}`}>
+                      <span>{genre.name}</span>
                       {separator(movie.id, movie)}
                     </span>
                   ))}
@@ -85,8 +84,8 @@ const Movie = () => {
               <h3>Featured Crew</h3>
               <div className={styles.crew}>
                 {credits.crew &&
-                  credits.crew.slice(0, 2).map((crew) => (
-                    <div key={crew.id} className={styles.item}>
+                  credits.crew.slice(0, 2).map((crew, i) => (
+                    <div key={`${Date.now()}${i}`} className={styles.item}>
                       <h3>{crew.name}</h3>
                       <div>{crew.known_for_department}</div>
                     </div>
@@ -109,9 +108,9 @@ const Movie = () => {
         <h2>Cast</h2>
         <div className={styles.info}>
           {credits.cast &&
-            credits.cast.slice(0, 8).map((cast) => (
-              <Link key={cast.id} to={`/actor/${cast.id}`}>
-                <div key={cast.id} className={styles.card}>
+            credits.cast.slice(0, 8).map((cast, i) => (
+              <Link key={`${cast.id}${i}`} to={`/actor/${cast.id}`}>
+                <div className={styles.card}>
                   <img src={imageUrl2 + cast.profile_path} alt="" />
                   <div>
                     <h3>{cast.name}</h3>
