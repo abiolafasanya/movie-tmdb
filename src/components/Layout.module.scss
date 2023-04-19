@@ -1,4 +1,4 @@
-@use '../styles/color.scss' as c;
+@use '../styles/color.scss' as *;
 @use '../styles/func' as *;
 
 .Layout {
@@ -10,13 +10,13 @@
 
   [data-theme='dark'] {
     width: 100%;
-    color: c.$light;
-    background-color: c.$dark;
+    color: $light;
+    background-color: $dark-theme;
   }
 
   [data-theme='light'] {
     width: 100%;
-    color: #000;
-    background-color: darken($color: c.$light, $amount: 5);
+    color: $dark;
+    background-color: darken($color: $light-theme, $amount: 5);
   }
 }
