@@ -5,14 +5,6 @@ import Axios from '../../api/Axios';
 import { Socials, actorType, castType, creditsType } from '../../utils/types';
 import { play, star } from '../../utils/Images';
 import { formatDate } from '../../utils/formatter';
-import {
-  FaFacebook,
-  FaInstagram,
-  FaTwitter,
-  FaYoutube,
-  FaTiktok,
-  FaImdb,
-} from 'react-icons/fa';
 import Social from '../../components/Social';
 
 const Actor = () => {
@@ -30,11 +22,14 @@ const Actor = () => {
     const birthdate = new Date(birthDate);
     const deathdate = new Date(deathDate);
 
-    const alive = new Date(Date.now()).getFullYear() - birthdate.getFullYear();
+    if (deathDate == undefined || deathDate == null) {
+      const alive =
+        new Date(Date.now()).getFullYear() - birthdate.getFullYear();
+      return alive;
+    }
     const died = deathdate.getFullYear() - birthdate.getFullYear();
     if (deathdate.getFullYear() > birthdate.getFullYear())
       return 'Late ' + died;
-    return alive;
   };
 
   useEffect(() => {
@@ -69,10 +64,6 @@ const Actor = () => {
     };
     return data;
   };
-
-  function Genre({ genre }: { genre: { id: number; name: string } }) {
-    return <span key={genre.id}>{genre.name}</span>;
-  }
 
   return (
     <div className={styles.actor}>
