@@ -70,7 +70,6 @@ const Actor = () => {
       socials,
       casts: credits.cast as castType[],
     };
-    console.log(data);
     return data;
   };
 
