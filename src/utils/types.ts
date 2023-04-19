@@ -107,3 +107,29 @@ export type creditsType = {
   cast: castType[];
   crew: crewType[];
 }
+
+export type actorsType = {
+  name: string;
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for: known_for[];
+};
+
+export type known_for = {
+  backdrop_path: string;
+  first_air_date: string;
+  genre_ids: Array<number>;
+  id: number;
+  media_type: string;
+  name: string;
+  title: string;
+  origin_country: Array<string>;
+  original_language: string;
+  original_name: string;
+  original_title: string;
+  overview: string;
+  poster_path: string;
+  vote_average: number;
+  vote_count: number;
+};

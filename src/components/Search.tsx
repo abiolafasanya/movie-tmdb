@@ -7,6 +7,7 @@ import { Movie } from '../utils/moviesController';
 import { popularMovieType } from '../utils/types';
 import { Link, Navigate } from 'react-router-dom';
 import Navigation from './Navigation';
+import { MdCancel } from 'react-icons/md';
 
 const Search = () => {
   const [result, setResult] = useState<popularMovieType[]>([]);
@@ -52,6 +53,10 @@ const Search = () => {
       </div>
       {showResult && (
         <div className={styles.searchResult}>
+          <MdCancel
+            className={styles.cancel}
+            onClick={() => setShowResult(false)}
+          />
           <ul className={styles['searchResult-list']}>
             {result?.length > 0 &&
               result.map((result) => (
