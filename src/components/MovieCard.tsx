@@ -17,16 +17,20 @@ const MovieCard = ({ genres, movie }: Props) => {
 
   return (
     <div key={movie.id} className={styles.card}>
-        <img src={posterBaseUrl + movie.backdrop_path} alt="poster" />
-        <div className={styles['card-body']}>
-          <h2>{movie.title}</h2>
-          <div className={styles.rating}>
-            <img src={star} alt="star" />
-            <span>{rating(movie.vote_average)}</span>|
-            <span>{formatDate(movie.release_date)}</span>
-          </div>
-          <div>{mapGenres(movie.genre_ids)}</div>
+      <img src={posterBaseUrl + movie.backdrop_path} alt="poster" />
+      <div className={styles['card-body']}>
+        <h2>{movie.title}</h2>
+        <div className={styles.rating}>
+          <img src={star} alt="star" />
+          <span>{rating(movie.vote_average)}</span>|
+          <span>
+            {formatDate(
+              movie.release_date ? movie.release_date : movie.first_air_date
+            )}
+          </span>
         </div>
+        <div>{mapGenres(movie.genre_ids)}</div>
+      </div>
     </div>
   );
 };

@@ -9,6 +9,7 @@ export type popularMovieType = {
   popularity: number;
   poster_path: string;
   release_date: string;
+  first_air_date: string;
   title: string;
   video: false;
   vote_average: number;
