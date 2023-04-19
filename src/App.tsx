@@ -5,6 +5,7 @@ import Movie from './pages/Movie/Movie';
 import Contact from './pages/Contact';
 import Tv from './pages/Tv/Tv';
 import Actors from './pages/Actors/Actors';
+import Actor from './pages/Actor/Actor';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Movies />} />
         <Route path="/tv-shows" element={<Tv />} />
         <Route path="/actors" element={<Actors />} />
+        <Route path="/actor/:id" element={<Actor />} />
         <Route path="/movie/:id" element={<Movie />} />
         <Route path="/contact" element={<Contact />} />
       </Route>

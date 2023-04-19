@@ -1,0 +1,108 @@
+@use '../../styles/color.scss' as *;
+@use '../../styles/func.scss' as *;
+
+.actor {
+    @include container() {
+        min-height: 100vh;
+    }
+    
+    .title {
+        margin: 1rem 0;
+        color: $orange;
+    }
+
+    .trailerBtn {
+        background-color: darken($color: $orange, $amount: 10);
+        color: set-text-color($orange);
+        gap: 5px;
+        display: flex;
+        align-items: center;
+        padding: 14px 16px;
+        margin: 1rem 0;
+        width: 150px;
+        border-radius: 1px solid transparent;
+  
+        @include mobile() {
+          margin: 1rem 0 3rem 0;
+        }
+  
+        &:hover {
+          background-color: darken($color: $orange, $amount: 20);
+        }
+      }
+
+      .details {
+        display: flex;
+        gap: 1rem;
+        width: 100%;
+
+        @include mobile() {
+            flex-direction: column;
+        }
+        @include tablet() {
+            flex-direction: column;
+        }
+
+
+        .image {
+            width: 35%;
+            @include mobile() {
+                width: 100%;
+            }
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .content {
+            width: 65%;
+            @include mobile() {
+                width: 100%;
+            }
+
+            .info {
+                margin: .1rem 0 2rem 0;
+            }
+
+            .bio {
+                margin: 2rem 0;
+            }
+
+            .knownMovies {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: 1rem;
+
+                img {
+                    width: 200px;
+
+                    @include mobile() {
+                        width: 100%;
+                    }
+
+                    @include tablet() {
+                        width: 100%;
+                    }
+
+                    object-fit: cover;
+                    object-position: center;
+                }
+
+                .kTitle {
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    width: 200px;
+                }
+            }
+        }
+      }
+
+      .creditList {
+        padding: .1rem;
+        ;
+      }
+
+}

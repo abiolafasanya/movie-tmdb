@@ -1,9 +1,12 @@
 import React from 'react'
+import styles from './Tv.module.scss';
 
 const Tv = () => {
   return (
-    <div>Tv</div>
-  )
+    <div className={styles.tv}>
+      <h2 className={styles.title}>Tv Shows</h2>
+    </div>
+  );
 }
 
 export default Tv

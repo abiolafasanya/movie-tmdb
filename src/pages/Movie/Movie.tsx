@@ -100,17 +100,19 @@ const Movie = () => {
         <div className={styles.info}>
           {credits.cast &&
             credits.cast.slice(0, 8).map((cast) => (
-              <div key={cast.id} className={styles.card}>
-                <img src={imageUrl2 + cast.profile_path} alt="" />
-                <div>
-                  <h3>{cast.name}</h3>
-                  <div>{cast.character}</div>
+              <Link to={`/actor/${cast.id}`}>
+                <div key={cast.id} className={styles.card}>
+                  <img src={imageUrl2 + cast.profile_path} alt="" />
+                  <div>
+                    <h3>{cast.name}</h3>
+                    <div>{cast.character}</div>
+                  </div>
+                  <div>
+                    <span>{cast.known_for_department}</span> |
+                    <span>{Math.floor(cast.popularity * 10)}k</span>
+                  </div>
                 </div>
-                <div>
-                  <span>{cast.known_for_department}</span> |
-                  <span>{Math.floor(cast.popularity * 10)}k</span>
-                </div>
-              </div>
+              </Link>
             ))}
         </div>
       </div>

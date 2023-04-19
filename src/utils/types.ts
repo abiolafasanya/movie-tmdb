@@ -80,13 +80,19 @@ export type castType = {
   id: number;
   known_for_department: string;
   name: string;
+  title: string;
   original_name: string;
+  original_title: string;
+  release_date: string;
+  first_aired: string;
   popularity: number;
   profile_path: string;
   cast_id: number;
   character: string;
   credit_id: string;
   order: number;
+  backdrop_path: string;
+  poster_path: string;
 };
 
 export type crewType = {
@@ -132,4 +138,35 @@ export type known_for = {
   poster_path: string;
   vote_average: number;
   vote_count: number;
+};
+
+export type actorType = {
+  adult: boolean;
+  also_known_as: Array<string>;
+  biography: string;
+  birthday: string;
+  deathday: string;
+  gender: number;
+  homepage: string;
+  id: number;
+  imdb_id: string;
+  known_for_department: string;
+  name: string;
+  place_of_birth: string;
+  popularity: number;
+  profile_path: string;
+};
+
+export type Socials = {
+  id: number;
+  freebase_mid: string;
+  freebase_id: string;
+  imdb_id: string;
+  tvrage_id: string;
+  wikidata_id: string;
+  facebook_id: string;
+  instagram_id: string;
+  tiktok_id: string;
+  twitter_id: string;
+  youtube_id: string;
 };

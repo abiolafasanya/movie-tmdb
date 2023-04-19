@@ -2,8 +2,10 @@
 @use '../../styles/func.scss' as *;
 
 .actors {
-    @include container();
-
+    @include container() {
+        min-height: 100vh;
+    }
+    
     .title {
         margin: 1rem 0;
         color: $orange;

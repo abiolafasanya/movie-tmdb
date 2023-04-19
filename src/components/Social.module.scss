@@ -1,0 +1,11 @@
+@use '../styles/color' as *;
+@use '../styles/func' as *;
+
+.social {
+display: flex;
+gap: .5rem;
+
+.fa {
+    font-size: 24px;
+}
+}
